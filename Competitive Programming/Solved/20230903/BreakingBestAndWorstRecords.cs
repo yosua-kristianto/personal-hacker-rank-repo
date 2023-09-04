@@ -77,6 +77,7 @@ namespace BreakingBestAndWorstRecords
   {
     public static void BreakingBestAndWorstRecords(string[] args)
     {
+      // Comment this when running in your local
       TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
       int n = Convert.ToInt32(Console.ReadLine().Trim());
@@ -85,8 +86,9 @@ namespace BreakingBestAndWorstRecords
 
       List<int> result = Result.breakingRecords(scores);
 
+      // Comment this when running in your local
+      
       textWriter.WriteLine(String.Join(" ", result));
-
       textWriter.Flush();
       textWriter.Close();
     }
