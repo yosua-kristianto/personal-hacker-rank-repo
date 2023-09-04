@@ -156,7 +156,7 @@ namespace CamelCaseFour
       }
     }
 
-    static void Main(String[] args)
+    static void CamelCaseFour(String[] args)
     {
       new Solution();
     }
