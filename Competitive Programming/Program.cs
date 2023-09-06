@@ -30,7 +30,7 @@ class Result
     public static long flippingBits(long n)
     {
         // This is the data structure to store the bitmap.
-        List<byte> bitmapCollection = new List<byte>();
+        List<int> bitmapCollection = new List<int>();
         
         while(n > 0)
         {
@@ -43,37 +43,53 @@ class Result
             if(remainder != 0)
             {
                 // This is intentional since I want to flip the result
-                bitmapCollection.Insert(0, 0);
+                bitmapCollection.Add(0);
             }
             else
             {
                 // This is intentional since I want to flip the result
-                bitmapCollection.Insert(0, 1);
+                bitmapCollection.Add(1);
             }
         }
 
         // Force the bitmap collection to 32-bit
-        if(bitmapCollection.Count < 32)
+        if (bitmapCollection.Count < 32)
         {
-            for(int i = 0; i < (32 - bitmapCollection.Count); i++)
+            int pivot = bitmapCollection.Count;
+            for (int i = 0; i <= (32 - pivot); i++)
             {
                 // This is intentional since I want to flip the result
-                bitmapCollection.Insert(0, 1);
+                bitmapCollection.Add(1);
+
+                Console.WriteLine("Index number " + i);
             }
         }
 
         // New Number
         double newLong = 0L;
 
-        for(int i = 0; i < bitmapCollection.Count; i++)
+        Console.Write("Before reverse: ");
+        bitmapCollection.ForEach(e => Console.Write(e));
+
+        Console.WriteLine();
+
+        // Reverse the bitmap
+        bitmapCollection.Reverse();
+
+        Console.Write("After reverse: ");
+        bitmapCollection.ForEach(e => Console.Write(e));
+
+        for (int i = 0; i < bitmapCollection.Count; i++)
         {
-            byte e = bitmapCollection[i];
+            int e = bitmapCollection[i];
 
             if(e == 1)
             {
                 newLong += (double) Math.Pow(2, i);
             }
         }
+
+        Console.WriteLine("Result is: " + newLong);
 
         return (long) newLong;
     }
