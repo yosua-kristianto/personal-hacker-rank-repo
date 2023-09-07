@@ -1,4 +1,9 @@
-﻿namespace Grading
+﻿/**
+ * Did in Microsoft Visual Studio 2022 for Mac
+ * 
+ * Sorry if the tab indentation messing things up.
+ */
+namespace Grading
 {
     class Result
     {

@@ -1,4 +1,9 @@
-﻿namespace LonelyInteger
+﻿/**
+ * Did in Microsoft Visual Studio 2022 for Mac
+ * 
+ * Sorry if the tab indentation messing things up.
+ */
+namespace LonelyInteger
 {
     class Result
     {
