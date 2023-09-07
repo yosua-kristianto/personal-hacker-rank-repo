@@ -1,0 +1,8 @@
+﻿## Bing
+
+This is a summary of the text:
+
+- The text is about lower bounds for sorting algorithms, which are methods to arrange items in a certain order.
+- The text shows that any comparison-based sorting algorithm, which only uses comparisons between pairs of items, must take at least Ω(n log n) time to sort n items in the worst case, average case, and randomized case[1].
+- The text uses a game-theoretic approach to prove the lower bounds, by imagining an adversary who always gives the answer that makes the algorithm take longer.
+- The text also discusses some variations of the sorting problem, such as ordering the smallest n/2 items before the largest n/2 items, and shows that they have different lower bounds.
