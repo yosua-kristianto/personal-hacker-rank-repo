@@ -10,5 +10,9 @@
 
   <ItemGroup>
     <None Remove="Solved\20230906\" />
+    <None Remove="Solved\20230909\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Solved\20230909\" />
   </ItemGroup>
 </Project>
