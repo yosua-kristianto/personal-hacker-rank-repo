@@ -14,7 +14,7 @@ Started to code with F# by September, 27th 2023.
 Here is the progress tracking, tiding it up as this to make searching easier.
 
 | No | Date | Problem Solved | Programming Language |
-|---|---|---|---|---|
+|---|---|---|---|
 | 1 | 20230903 | Breaking Best and Worst Records | C# |
 | 2 | 20230903 | Camel Case Four | C# |
 | 3 | 20230903 | Mini Max Sum | C# |
