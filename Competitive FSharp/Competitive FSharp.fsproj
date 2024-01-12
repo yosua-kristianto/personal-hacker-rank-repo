@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Competitive_Programming_F_</RootNamespace>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Competitive_FSharp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
