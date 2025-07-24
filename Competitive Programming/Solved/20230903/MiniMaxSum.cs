@@ -1,70 +1,61 @@
-﻿namespace MiniMaxSum
-{
-  class Result
-  {
+﻿
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
 
+namespace MiniMaxSum;
+
+class Result
+{
     /*
      * Complete the 'miniMaxSum' function below.
      *
      * The function accepts INTEGER_ARRAY arr as parameter.
-     * MiniMaxSum
-     * @link https://www.hackerrank.com/challenges/three-month-preparation-kit-mini-max-sum/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=preparation-kits&playlist_slugs%5B%5D=three-month-preparation-kit&playlist_slugs%5B%5D=three-month-week-one
      */
-
-    public static void miniMaxSum(List<Int64> arr)
+    public static void miniMaxSum(List<int> arr)
     {
-      Int64 minimum = 0;
-      Int64 maximum = 0;
+        // Appearently can't do "where 2, and sum 2" times, so ya
+        long sumMax = 0;
+        long sumMin = 0;
 
-      // Loop through number within array to be excluded.
-      for (int i = 0; i < arr.Count; i++)
-      {
-        Int64 currentSum = 0;
+        arr.Sort();
 
-        // Generate sum (except for current i) for every number within array
-        for (int j = 0; j < arr.Count; j++)
+        // Doing it by index
+        for (int i = 0; i < arr.Count; i++)
         {
-          if (j != i)
-          {
-            currentSum += arr[j];
-          }
+            if (i == 0)
+            {
+                sumMin += arr[i];
+            }
+            else if (i == arr.Count - 1)
+            {
+                sumMax += arr[i];
+            }
+            else
+            {
+                sumMin += arr[i];
+                sumMax += arr[i];
+            }
         }
 
-        // Initialize the minimium and maximum
-        if (minimum == 0 && maximum == 0)
-        {
-          minimum = currentSum;
-          maximum = currentSum;
-          continue;
-        }
-
-        // Redefine Minimum
-        if (minimum > currentSum)
-        {
-          minimum = currentSum;
-          continue;
-        }
-
-        // Redefine Maximum
-        if (maximum < currentSum)
-        {
-          maximum = currentSum;
-        }
-      }
-
-      Console.WriteLine(minimum.ToString() + " " + maximum.ToString());
+        Console.WriteLine($"{sumMin} {sumMax}");
     }
-
-  }
-
-  class Solution
-  {
-    public static void MiniMaxSum(string[] args)
+}
+class Solution
+{
+    public static void Main(string[] args)
     {
-
-      List<Int64> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt64(arrTemp)).ToList();
-
-      Result.miniMaxSum(arr);
+        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+        Result.miniMaxSum(arr);
     }
-  }
 }
