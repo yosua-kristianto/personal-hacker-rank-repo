@@ -30,28 +30,22 @@
 
     public static List<int> countingSort(List<int> arr)
     {
-      // Speaking about array, it has [index] and value components. The array index will treated as the number
-      // that represent coeficient within the input while its value is storing its coeficient's appearances
-      List<int> countingArray = new List<int>();
+            List<int> flagSorter = new();
 
-      // Initialize countingArray from index 0 to 99 by 0.
-      for (int i = 0; i < 100; i++)
-      {
-        countingArray.Add(0);
-      }
+            // Get Max from arr
+            int constraintMax = 99;
 
-      foreach (int i in arr)
-      {
-        countingArray[i] = countingArray[i] + 1;
-      }
+            // Reserve Flag Sorter 0 .. Max
+            for (int i = 0; i <= constraintMax; i++)
+            {
+                flagSorter.Add(0);
+            }
 
-      // You can delete this statement since it meant for testing.
-      for (int i = 0; i < countingArray.Count; i++)
-      {
-        Console.WriteLine("Index of [" + i + "] counted: " + countingArray[i] + " the expected test is " + testCase[i]);
-      }
+            arr.ForEach(i => {
+                flagSorter[i]++;
+            });
 
-      return countingArray;
+            return flagSorter;
     }
 
   }

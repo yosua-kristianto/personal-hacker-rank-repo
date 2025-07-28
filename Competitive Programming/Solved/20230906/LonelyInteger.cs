@@ -1,77 +1,82 @@
-﻿/**
- * Did in Microsoft Visual Studio 2022 for Mac
- * 
- * Sorry if the tab indentation messing things up.
- */
-namespace LonelyInteger
+﻿using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+namespace LonelyInteger;
+class Result
 {
-    class Result
+
+    /*
+     * Complete the 'lonelyinteger' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts INTEGER_ARRAY a as parameter.
+     */
+
+    public static int lonelyinteger(List<int> a)
     {
+        a.Sort();
 
-        /*
-         * Complete the 'lonelyinteger' function below.
-         *
-         * The function is expected to return an INTEGER.
-         * The function accepts INTEGER_ARRAY a as parameter.
-         * @link https://www.hackerrank.com/challenges/three-month-preparation-kit-lonely-integer/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=preparation-kits&playlist_slugs%5B%5D=three-month-preparation-kit&playlist_slugs%5B%5D=three-month-week-two
-         */
+        int lastNumber = -1;
+        int counter = 0;
 
-        public static int lonelyinteger(List<int> a)
+        foreach (int i in a)
         {
-            // This is a data structure to store whatever non-unique value found.
-            List<int> nonUniqueFound = new List<int>();
-
-            for (int i = 0; i < (a.Count); i++)
+            // If lastNumber is -1, save it to lastNumber
+            if (lastNumber == -1)
             {
-                bool foundFlag = false;
-
-                // If current loop has a number that already stored in nonUniqueFound, skip this loop.
-                if (nonUniqueFound.Contains(a[i]))
-                {
-                    continue;
-                }
-
-                // Loop through series starting from i+1
-                for (int j = i + 1; j < a.Count; j++)
-                {
-                    // If the series is same as a[i], then set the foundFlag to true, and store the value to nonUniqueValue
-                    if (a[i] == a[j])
-                    {
-                        foundFlag = true;
-                        nonUniqueFound.Add(a[i]);
-                        break;
-                    }
-                }
-
-                if (!foundFlag)
-                {
-                    Console.WriteLine(a[i]);
-                    return a[i];
-                }
+                lastNumber = i;
             }
+            // If the previous number is same as current, counter++ 
+            else if (lastNumber == i)
+            {
+                counter++;
+            }
+            else
+            {
+                // If the counter is 0 and this is not the last number, break.
+                if (counter == 0)
+                {
+                    break;
+                }
 
-            throw new Exception("There are no unique number within the array series.");
+                // Reset counter when the previous number is not same. 
+                lastNumber = i;
+                counter = 0;
+            }
         }
+
+
+        return lastNumber;
     }
 
-    class Solution
+}
+
+class Solution
+{
+    public static void Main(string[] args)
     {
-        public static void LonelyIntegers(string[] args)
-        {
-            // Comment this to run in local
-            TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
-            int n = Convert.ToInt32(Console.ReadLine().Trim());
+        int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-            List<int> a = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(aTemp => Convert.ToInt32(aTemp)).ToList();
+        List<int> a = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(aTemp => Convert.ToInt32(aTemp)).ToList();
 
-            int result = Result.lonelyinteger(a);
+        int result = Result.lonelyinteger(a);
 
-            // Comment this to run in local
-            textWriter.WriteLine(result);
-            textWriter.Flush();
-            textWriter.Close();
-        }
+        textWriter.WriteLine(result);
+
+        textWriter.Flush();
+        textWriter.Close();
     }
-
 }

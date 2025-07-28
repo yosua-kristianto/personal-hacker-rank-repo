@@ -3,48 +3,54 @@
   class Result
   {
 
-    /*
-     * Complete the 'diagonalDifference' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts 2D_INTEGER_ARRAY arr as parameter.
-     * 
-     * This problem can be solved by determining square matrix.
-     * 
-     * Hence a matrix of 
-     * 
-     * 1 2 3
-     * 4 5 6
-     * 7 8 9
-     * 
-     * We will go for | (1 + 5 + 9) - (3 + 5 + 7) | = |(0)| = 0
-     * Absoluting the result, resulting the number cannot be less than 0.
-     * 
-     * (0, 0) + (1, 1) + (2, 2)
-     * Minus
-     * (0, 2) + (1, 1) + (2, 0)
-     */
+        /*
+         * Complete the 'diagonalDifference' function below.
+         *
+         * The function is expected to return an INTEGER.
+         * The function accepts 2D_INTEGER_ARRAY arr as parameter.
+         * 
+         * This problem can be solved by determining square matrix.
+         * 
+         * Hence a matrix of 
+         * 
+         * 1 2 3
+         * 4 5 6
+         * 7 8 9
+         * 
+         * We will go for | (1 + 5 + 9) - (3 + 5 + 7) | = |(0)| = 0
+         * Absoluting the result, resulting the number cannot be less than 0.
+         * 
+         * (0, 0) + (1, 1) + (2, 2)
+         * Minus
+         * (0, 2) + (1, 1) + (2, 0)
+         */
 
-    public static int diagonalDifference(List<List<int>> arr)
-    {
-      // Upper Left to Right Bottom 
-      int x1 = 0;
-      for (int i = 0; i < arr.Count; i++)
-      {
-        x1 += arr[i][i];
-      }
+        public static int diagonalDifference(List<List<int>> arr)
+        {
+            int rightToLeft = 0;
+            int leftToRight = 0;
 
-      // Upper Right to Left Bottom
-      int x2 = 0;
-      for (int i = 0; i < arr.Count; i++)
-      {
-        x2 += arr[i][((arr.Count - 1) - i)];
-      }
+            // Matrix Determinant (Row)
+            for (int i = 0; i < arr.Count; i++)
+            {
 
-      return Math.Abs(x1 - x2);
+                // (List)
+                for (int j = 0; j < arr[i].Count; j++)
+                {
+                    if (j == i)
+                    {
+                        rightToLeft += arr[i][j];
+                        leftToRight += arr[((arr.Count - 1) - i)][j];
+                    }
+                }
+            }
+
+            int determinant = (rightToLeft - leftToRight);
+
+            return (determinant < 0) ? determinant * -1 : determinant;
+        }
+
     }
-
-  }
 
   class Solution
   {
